@@ -22,7 +22,7 @@ export default {
   },
   emits: ["rollAdvice"],
   methods: {
-    rollAdvice: () => {
+    rollAdvice() {
       this.$emit("rollAdvice");
     },
   },

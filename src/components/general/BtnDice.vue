@@ -1,5 +1,5 @@
 <template>
-  <button class="roll-button">
+  <button class="roll-button" @click="">
     <img src="@/assets/images/icon-dice.svg" />
   </button>
 </template>
@@ -22,5 +22,6 @@ export default {};
   color: $color-light-cyan;
   border: none;
   border-radius: 50%;
+  cursor: pointer;
 }
 </style>

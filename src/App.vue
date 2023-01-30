@@ -1,10 +1,15 @@
 <template>
   <div class="wrapper">
-    <AdviceModal
-      :opened="modalOpened"
-      :advice="advice"
-      @roll-advice="rerollAdvice"
-    />
+    <transition mode="out-in" name="fade" @leave="checkLoaded">
+      <div v-if="modalOpened" class="advice-transition-wrapper">
+        <AdviceModal
+          key="advice"
+          :opened="modalOpened"
+          :advice="advice"
+          @roll-advice="loadAdvice"
+        />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -17,23 +22,29 @@ export default {
   },
   data: () => {
     return {
-      modalOpened: false,
+      transitionActive: false,
       advice: {
         id: 0,
         advice: "Loading...",
       },
     };
   },
+  computed: {
+    modalOpened() {
+      return this.advice.id && !this.transitionActive;
+    },
+  },
   async created() {
     await this.loadAdvice();
   },
   methods: {
     async loadAdvice() {
+      this.advice.id = 0;
       try {
         const resp = await fetch("https://api.adviceslip.com/advice");
+
         if (resp.ok) {
           const data = await resp.json();
-          console.log(data);
           if (data?.slip) {
             this.advice = data.slip;
           }
@@ -42,9 +53,8 @@ export default {
         console.error(e);
       }
     },
-    openModal: () => {},
-    rerollAdvice: () => {
-      this.loadAdvice();
+    checkLoaded() {
+      this.transitionActive = false;
     },
   },
 };
@@ -52,6 +62,7 @@ export default {
 
 <style lang="scss">
 @import "@/scss/index.scss";
+@import "@/scss/_animation.scss";
 
 html {
   padding: 0;
