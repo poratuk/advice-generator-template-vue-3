@@ -4,7 +4,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 # Advice generator app
 
-![Design preview for the Advice generator app coding challenge](./design/desktop-preview.jpg)
+![Design preview for the Advice generator app coding challenge](./public/design/desktop-preview.jpg)
 
 ## The challenge
 
