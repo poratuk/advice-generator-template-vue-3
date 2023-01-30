@@ -38,24 +38,30 @@ export default {
   max-width: 30em;
   justify-content: center;
   align-items: center;
-  margin-bottom: 4.5em;
+  margin: 0 auto 4.5em;
+  padding: 0 0.5em;
 
   @media (min-width: $device-lg) {
     max-width: 20em;
     min-width: 20em;
+    margin-bottom: 0;
   }
 
   .advice-modal-body {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 2em 1fr 1em 2em;
-    grid-gap: 0.35em;
-    background: $color-grayish-blue;
+    grid-template-rows: 1em 1fr 1em 2em;
+    grid-gap: 1em;
+    background: $color-dark-grayish-blue;
     border-radius: 0.7em;
-    padding: 1.5em 1.5em 0 1.5em;
+    padding: 1.5em 1em 0 1em;
     margin: auto;
     min-width: 90vw;
     min-height: 10em;
+    @media (min-width: $device-lg) {
+      min-width: 0;
+    }
+
     .advice-header {
       font-size: 0.5em;
       color: $color-neon-green;
@@ -65,14 +71,14 @@ export default {
     }
     .advice-advice {
       text-align: center;
-      margin: 1em;
       line-height: 1.5em;
     }
     .advice-hr {
       position: relative;
       z-index: 2;
-      width: 100%;
+      width: 10em;
       height: 1em;
+      margin: 0 auto;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
